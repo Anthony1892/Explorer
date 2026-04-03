@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Email Confirmed</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d1117;
+      --surface:  #161b22;
+      --border:   #21262d;
+      --green:    #3fb950;
+      --green-dim:#1a4a25;
+      --text:     #e6edf3;
+      --muted:    #7d8590;
+    }
+
+    body {
+      min-height: 100dvh;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      padding: 24px;
+      /* subtle grid texture */
+      background-image:
+        linear-gradient(rgba(63,185,80,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(63,185,80,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 60px rgba(63,185,80,.08);
+      animation: rise .55s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* animated checkmark circle */
+    .check-wrap {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+
+    .check-wrap svg {
+      width: 72px;
+      height: 72px;
+    }
+
+    .circle-bg {
+      fill: var(--green-dim);
+    }
+
+    .circle-ring {
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 3;
+      stroke-dasharray: 201;
+      stroke-dashoffset: 201;
+      transform-origin: 50% 50%;
+      transform: rotate(-90deg);
+      animation: ring .6s .2s ease forwards;
+    }
+
+    @keyframes ring {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .check-path {
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 30;
+      stroke-dashoffset: 30;
+      animation: tick .35s .75s ease forwards;
+    }
+
+    @keyframes tick {
+      to { stroke-dashoffset: 0; }
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.75rem;
+      letter-spacing: -.01em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    p {
+      font-size: .975rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--green-dim);
+      border: 1px solid rgba(63,185,80,.3);
+      color: var(--green);
+      font-size: .82rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 28px;
+      letter-spacing: .02em;
+    }
+
+    .pill-dot {
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.6s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .4; transform: scale(.7); }
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 0 24px;
+    }
+
+    .footer-note {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="check-wrap">
+      <svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+        <circle class="circle-bg" cx="36" cy="36" r="32"/>
+        <circle class="circle-ring" cx="36" cy="36" r="32"/>
+        <path class="check-path" d="M22 37l10 10 18-20"/>
+      </svg>
+    </div>
+
+    <div class="pill">
+      <span class="pill-dot"></span>
+      Verified
+    </div>
+
+    <h1>Email Confirmed</h1>
+    <p>Your email address has been successfully verified. You can now open the app and sign in to your account.</p>
+
+    <div class="divider"></div>
+    <p class="footer-note">You may close this tab.</p>
+
+  </div>
+</body>
+</html>
