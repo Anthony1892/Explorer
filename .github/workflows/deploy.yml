@@ -22,12 +22,11 @@ jobs:
 
       - name: Inject config
         run: |
-          cat > config.js << EOF
-          const SUPABASE_URL      = '${{ secrets.SUPABASE_URL }}';
-          const SUPABASE_ANON_KEY = '${{ secrets.SUPABASE_ANON_KEY }}';
-          EOF
-          echo "config.js contents:"
+          echo "const SUPABASE_URL = '${SUPABASE_URL}';" > config.js
+          echo "const SUPABASE_ANON_KEY = '${SUPABASE_ANON_KEY}';" >> config.js
+          echo "--- config.js preview ---"
           cat config.js
+          ls -la
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
