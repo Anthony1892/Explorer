@@ -26,12 +26,20 @@ jobs:
           echo "const SUPABASE_ANON_KEY = '${SUPABASE_ANON_KEY}';" >> config.js
           echo "--- config.js preview ---"
           cat config.js
-          ls -la
+
+      - name: Prepare publish directory
+        run: |
+          mkdir -p publish
+          cp index.html publish/ 2>/dev/null || true
+          cp reset-password.html publish/ 2>/dev/null || true
+          cp email-confirm.html publish/ 2>/dev/null || true
+          cp config.js publish/
+          ls -la publish/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./publish
           allow_empty_commit: true
           force_orphan: true
