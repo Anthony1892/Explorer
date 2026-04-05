@@ -23,9 +23,11 @@ jobs:
       - name: Inject config
         run: |
           cat > config.js << EOF
-          const SUPABASE_URL      = '${SUPABASE_URL}';
-          const SUPABASE_ANON_KEY = '${SUPABASE_ANON_KEY}';
+          const SUPABASE_URL      = '${{ secrets.SUPABASE_URL }}';
+          const SUPABASE_ANON_KEY = '${{ secrets.SUPABASE_ANON_KEY }}';
           EOF
+          echo "config.js contents:"
+          cat config.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
